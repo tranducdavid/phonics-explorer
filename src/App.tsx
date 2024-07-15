@@ -4,12 +4,22 @@ import { useState } from 'react'
 import { NavBar } from './NavBar'
 import { PhonicsTable } from './PhonicsTable'
 import { phonicsData } from './constants'
+import { spellingToRegex } from './utils'
+import _ from 'lodash'
 
 export const App = () => {
   const [word, setWord] = useState('')
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setWord(e.target.value)
   }
+
+  const dataWithRegexes = _.sortBy(
+    phonicsData.map((data) => ({
+      ...data,
+      regex: spellingToRegex(data.spelling),
+    })),
+    ['spelling', 'ipa'],
+  )
 
   return (
     <div className="text-gray-100 bg-gray-700 min-h-screen">
@@ -26,7 +36,13 @@ export const App = () => {
             )}
           />
         </Field>
-        <PhonicsTable phonicsData={phonicsData} />
+        <PhonicsTable
+          phonicsData={
+            word
+              ? dataWithRegexes.filter(({ regex }) => regex.test(word))
+              : dataWithRegexes
+          }
+        />
       </div>
     </div>
   )
