@@ -1,8 +1,10 @@
 {
   "name": "phonics-explorer",
   "private": true,
+  "author": "David Tran Duc",
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://tranducdavid.github.io/phonics-explorer",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
