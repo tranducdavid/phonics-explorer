@@ -1,10 +1,10 @@
-export const spellingToRegex = (pattern: string): RegExp => {
-  const specialChars = /[-/\\^$*+?.()|[\]{}]/g
-  pattern = pattern.replace(specialChars, '\\$&')
+export const spellingToRegex = (pattern: string): RegExp =>
+  new RegExp(
+    pattern
+      .replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')
+      .replace(/\\\.\\\.\\\./g, '.'),
+    'i',
+  )
 
-  pattern = pattern.replace(/\\\.\\\.\\\./g, '.')
-
-  const regexPattern = new RegExp(pattern, 'i')
-
-  return regexPattern
-}
+export const ipaToRegex = (pattern: string): RegExp =>
+  new RegExp(pattern.replace('/', '').replace(':', ''), 'i')

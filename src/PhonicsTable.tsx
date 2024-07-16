@@ -28,13 +28,13 @@ export const PhonicsTable = ({ phonicsData }: PhonicsTableProps) => {
               scope="col"
               className="px-6 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider"
             >
-              IPA
+              Spelling
             </th>
             <th
               scope="col"
               className="px-6 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider"
             >
-              Spelling
+              IPA
             </th>
             <th
               scope="col"
@@ -48,10 +48,10 @@ export const PhonicsTable = ({ phonicsData }: PhonicsTableProps) => {
           {phonicsData.map((item, index) => (
             <tr key={index} className="hover:bg-gray-600">
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-100">
-                {item.ipa}
+                {item.spelling}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-100">
-                {item.spelling}
+                {item.ipa}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-100">
                 {renderExample(item.example)}
